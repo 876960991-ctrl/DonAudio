@@ -51,7 +51,10 @@
     const LS_KEY = 'dnAudio.v1';
     let state = Object.assign({
       idx: 0, shuffle: true, loop: 'none', volume: 0.6, muted: false,
-      liked: [], collapsed: false
+      liked: [], collapsed: false,
+      currentTime: 0,     // 当前播放位置（秒）— 跨页面恢复用
+      playing: false,     // 跨页面是否应继续播放
+      lastSaveAt: 0,      // 防写入过频
     }, (function readLS() {
       try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (e) { return {}; }
     })());
@@ -158,7 +161,7 @@
       `).join('');
     }
 
-    function loadTrack(i, autoplay = false) {
+    function loadTrack(i, autoplay = false, startAt = 0) {
       state.idx = ((i % PLAYLIST.length) + PLAYLIST.length) % PLAYLIST.length;
       const t = PLAYLIST[state.idx];
       audio.src = t.url;
@@ -171,6 +174,11 @@
       likeBtn.classList.toggle('on', isLiked);
       likeBtn.innerHTML = isLiked ? ICO.heartOn : ICO.heart;
       renderList();
+      // 如果需要从指定位置恢复，等 metadata 加载完再跳
+      if (startAt > 0) {
+        const jump = () => { try { audio.currentTime = startAt; } catch(e){} };
+        audio.addEventListener('loadedmetadata', jump, { once: true });
+      }
       saveLS();
       if (autoplay) audio.play().catch(() => {});
     }
@@ -182,6 +190,7 @@
       } else audio.pause();
     }
     function next() {
+      state.currentTime = 0;
       if (state.shuffle) {
         let n;
         do { n = Math.floor(Math.random() * PLAYLIST.length); } while (n === state.idx && PLAYLIST.length > 1);
@@ -189,7 +198,8 @@
       } else loadTrack(state.idx + 1, true);
     }
     function prev() {
-      if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+      if (audio.currentTime > 3) { audio.currentTime = 0; state.currentTime = 0; saveLS(); return; }
+      state.currentTime = 0;
       if (state.shuffle) {
         let n;
         do { n = Math.floor(Math.random() * PLAYLIST.length); } while (n === state.idx && PLAYLIST.length > 1);
@@ -240,6 +250,7 @@
     listEl.addEventListener('click', (e) => {
       const li = e.target.closest('[data-i]');
       if (!li) return;
+      state.currentTime = 0;
       loadTrack(parseInt(li.dataset.i, 10), true);
     });
     progEl.addEventListener('click', (e) => {
@@ -254,11 +265,26 @@
       fillEl.style.width = (p * 100) + '%';
       thumbEl.style.left = (p * 100) + '%';
       curEl.textContent = fmtTime(audio.currentTime);
+      // 跨页面恢复：每 2 秒写一次当前位置
+      const now = Date.now();
+      if (now - state.lastSaveAt > 2000) {
+        state.currentTime = audio.currentTime;
+        state.lastSaveAt = now;
+        saveLS();
+      }
     });
     audio.addEventListener('loadedmetadata', () => { durEl.textContent = fmtTime(audio.duration); });
-    audio.addEventListener('play',  () => { playBtn.innerHTML = ICO.pause; playBtn.classList.add('playing'); });
-    audio.addEventListener('pause', () => { playBtn.innerHTML = ICO.play;  playBtn.classList.remove('playing'); });
+    audio.addEventListener('play',  () => {
+      playBtn.innerHTML = ICO.pause; playBtn.classList.add('playing');
+      state.playing = true; saveLS();
+    });
+    audio.addEventListener('pause', () => {
+      playBtn.innerHTML = ICO.play;  playBtn.classList.remove('playing');
+      state.playing = false; saveLS();
+    });
     audio.addEventListener('ended', () => {
+      // 自然结束，把保存的位置清零，避免下次加载时又跳回末尾
+      state.currentTime = 0; saveLS();
       if (state.loop === 'one') { audio.currentTime = 0; audio.play(); return; }
       if (state.loop === 'all' || state.shuffle) { next(); return; }
       if (state.idx < PLAYLIST.length - 1) next();
@@ -281,9 +307,41 @@
     loopBtn.innerHTML = state.loop === 'one' ? ICO.repeatOne : ICO.repeat;
     loopBtn.title = state.loop === 'one' ? '单曲循环' : state.loop === 'all' ? '列表循环' : '不循环';
     muteBtn.innerHTML = state.muted ? ICO.mute : ICO.volume;
-    loadTrack(state.shuffle ? Math.floor(Math.random() * PLAYLIST.length) : state.idx);
+
+    /* === 跨页面恢复 ===
+     * 首次访问（没有保存过位置）才随机选一首；
+     * 否则加载上次的那首，并从上次的位置继续播。 */
+    const hasResumable = (typeof state.currentTime === 'number' && state.currentTime > 0)
+                         || state.playing;
+    let startIdx, startAt;
+    if (hasResumable) {
+      startIdx = state.idx || 0;
+      startAt  = state.currentTime || 0;
+    } else {
+      startIdx = state.shuffle ? Math.floor(Math.random() * PLAYLIST.length) : state.idx;
+      startAt  = 0;
+    }
+    loadTrack(startIdx, false, startAt);
+
+    // 离开页面前立刻保存一次精确位置
+    window.addEventListener('beforeunload', () => {
+      try {
+        state.currentTime = audio.currentTime;
+        state.playing = !audio.paused;
+        saveLS();
+      } catch(e) {}
+    });
+    // pagehide 是移动端更可靠的卸载事件
+    window.addEventListener('pagehide', () => {
+      try {
+        state.currentTime = audio.currentTime;
+        state.playing = !audio.paused;
+        saveLS();
+      } catch(e) {}
+    });
 
     const tryAutoplay = () => {
+      // 若上次是播放中状态，保持播放；否则也尝试自动播（首次访问）
       audio.play().then(() => toastEl.classList.remove('on'))
                   .catch(() => {
                     toastEl.classList.add('on');
@@ -301,6 +359,7 @@
     window.DNPlayer = {
       playUrl: (url, meta) => {
         if (!url) return;
+        state.currentTime = 0;
         audio.src = url;
         if (meta) {
           titleEl.textContent  = meta.title  || '外部曲目';

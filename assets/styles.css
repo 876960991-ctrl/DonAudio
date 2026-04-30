@@ -372,6 +372,7 @@ input, textarea, select { font-family: inherit; }
   max-width: 1400px; margin: 0 auto;
 }
 .masonry .tile {
+  display: block;
   break-inside: avoid;
   margin-bottom: 18px;
   border-radius: var(--r-md);
@@ -911,6 +912,7 @@ footer li:hover { color: var(--ink); }
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
 }
 .work-grid .tile {
+  display: block;
   border-radius: var(--r-md); overflow: hidden;
   background: var(--bg-2); border: 1px solid var(--line);
   transition: transform .4s cubic-bezier(.19,1,.22,1), border-color .3s;
