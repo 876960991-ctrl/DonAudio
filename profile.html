@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">创作者 · 東方之音 DONAUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700;900&family=Ma+Shan+Zheng&family=Liu+Jian+Mao+Cao&family=Zhi+Mang+Xing&family=Long+Cang&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="flux-bg"></div>
+<div class="flux-grid"></div>
+
+<!-- ===== 导航 ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span id="navLogo"></span>
+      東方之音
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="arranging.html">编曲</a>
+      <a href="mixing.html">混音母带</a>
+      <a href="songwriting.html">作词作曲</a>
+      <a href="sounddesign.html">声音设计</a>
+      <a href="scoring.html">影视配乐</a>
+      <a href="community.html">社区</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <span id="navSearchIcon"></span>
+        <input placeholder="搜索创作者 / 作品 / 话题">
+      </div>
+      <a href="brief.html" class="btn btn-ghost">发布需求</a>
+      <a href="auth.html" class="btn btn-primary">登录 / 注册</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== 封面 ===== -->
+<div class="profile-cover"></div>
+
+<div class="profile-wrap">
+
+  <!-- ===== 头部信息 ===== -->
+  <div class="profile-header">
+    <div class="profile-avatar" id="profAvatar"></div>
+    <div class="profile-info">
+      <h1 id="profName"></h1>
+      <div>
+        <span class="role-tag" id="profRole"></span>
+        <span class="location" id="profLoc"></span>
+      </div>
+      <div class="bio" id="profBio"></div>
+      <div class="tags" style="display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;" id="profTags"></div>
+    </div>
+    <div class="profile-actions">
+      <button class="btn-hire" id="hireBtn">
+        <span id="hireIcon"></span> 立刻沟通
+      </button>
+      <button class="btn-follow" id="followBtn">+ 关注</button>
+    </div>
+  </div>
+
+  <!-- ===== 数据指标 ===== -->
+  <div class="profile-metrics">
+    <div class="m"><div class="n" id="mWorks">0</div><div class="l">作品</div></div>
+    <div class="m"><div class="n" id="mFollowers">0</div><div class="l">粉丝</div></div>
+    <div class="m"><div class="n" id="mCoops">0</div><div class="l">达成合作</div></div>
+    <div class="m"><div class="n" id="mResponse">—</div><div class="l">平均响应</div></div>
+  </div>
+
+  <!-- ===== Tabs ===== -->
+  <div class="profile-tabs" id="tabs">
+    <button class="on" data-tab="works">作品</button>
+    <button data-tab="feed">动态</button>
+    <button data-tab="about">关于</button>
+  </div>
+
+  <!-- ===== 主体：双栏 ===== -->
+  <div class="profile-main">
+    <div class="profile-content">
+      <!-- 作品 -->
+      <div id="paneWorks">
+        <div class="profile-section-title">精选作品</div>
+        <div class="work-grid" id="workGrid"></div>
+      </div>
+
+      <!-- 动态 -->
+      <div id="paneFeed" style="display:none;">
+        <div class="profile-section-title">近期动态</div>
+        <div class="profile-feed" id="profFeed"></div>
+      </div>
+
+      <!-- 关于 -->
+      <div id="paneAbout" style="display:none;">
+        <div class="profile-section-title">关于 Ta</div>
+        <div class="side-card" style="padding:24px 28px;">
+          <p id="aboutBio" style="color: var(--ink-dim); line-height: 1.8; margin-bottom: 18px;"></p>
+          <div class="skill-list" id="aboutSkills"></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="profile-side">
+      <div class="side-card">
+        <h4>基本信息</h4>
+        <div id="sideInfo"></div>
+      </div>
+      <div class="side-card">
+        <h4>擅长技能</h4>
+        <div class="skill-list" id="sideSkills"></div>
+      </div>
+      <div class="side-card" style="background: linear-gradient(135deg, rgba(0,255,135,0.08), rgba(123,47,190,0.06)); border-color: rgba(0,255,135,0.25);">
+        <h4>想找 Ta 合作？</h4>
+        <p style="color:var(--ink-dim); font-size:13px; margin-bottom:14px;">通过平台内信直接沟通，不抽佣、不插手。</p>
+        <button class="btn-hire" style="width:100%; justify-content:center;">发起合作邀约</button>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+        <span id="footLogo"></span>
+        東方之音
+      </a>
+      <p style="color:var(--ink-dim); font-size:13px; max-width:380px;">
+        DONAUDIO — 让东方的声音被世界听见。<br>
+        纯粹的声音创作者合作平台。
+      </p>
+    </div>
+    <div>
+      <h5>板块</h5>
+      <ul>
+        <li><a href="arranging.html">编曲</a></li>
+        <li><a href="mixing.html">混音母带</a></li>
+        <li><a href="songwriting.html">作词作曲</a></li>
+        <li><a href="sounddesign.html">声音设计</a></li>
+        <li><a href="scoring.html">影视配乐</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>平台</h5>
+      <ul>
+        <li><a href="community.html">社区</a></li>
+        <li><a href="brief.html">发布需求</a></li>
+        <li><a href="profile.html">个人主页</a></li>
+        <li>关于我们</li>
+        <li>合作洽谈</li>
+      </ul>
+    </div>
+    <div>
+      <h5>联系</h5>
+      <ul>
+        <li>contact@donaudio.com</li>
+        <li>微信公众号：東方之音</li>
+        <li>小红书：@DONAUDIO</li>
+        <li>Bilibili：東方之音官方</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 DONAUDIO · 東方之音 · 一个交流平台，仅此而已</span>
+    <span>WWW.DONAUDIO.COM</span>
+  </div>
+</footer>
+
+<script src="assets/svg.js"></script>
+<script src="assets/data.js"></script>
+<script>
+// Logo / 图标
+document.getElementById('navLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('footLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('navSearchIcon').innerHTML = DONAUDIO_SVG.icons.search;
+document.getElementById('hireIcon').innerHTML = DONAUDIO_SVG.icons.msg;
+
+// 读取 URL 中的用户名
+const params = new URLSearchParams(location.search);
+const userName = params.get('u') || '顾岸';
+const user = DONAUDIO_DATA.getCreator(userName);
+
+// 标题
+document.getElementById('pageTitle').textContent = `${user.name} · 東方之音 DONAUDIO`;
+
+// 头部
+document.getElementById('profAvatar').textContent = user.avatar;
+document.getElementById('profName').textContent = user.name;
+document.getElementById('profRole').textContent = user.role;
+document.getElementById('profLoc').textContent = '· ' + user.location;
+document.getElementById('profBio').textContent = user.bio;
+document.getElementById('profTags').innerHTML = user.tags.map(t =>
+  `<span style="padding:4px 12px; border-radius:999px; background:rgba(255,255,255,0.06); color:var(--ink-dim); font-size:12px;">${t}</span>`
+).join('');
+
+// 数据指标
+const m = user.metrics;
+const fmt = n => n >= 10000 ? (n / 10000).toFixed(1) + 'w' : n.toLocaleString();
+document.getElementById('mWorks').textContent = fmt(m.works);
+document.getElementById('mFollowers').textContent = fmt(m.followers);
+document.getElementById('mCoops').textContent = fmt(m.coops);
+document.getElementById('mResponse').textContent = m.response;
+
+// 作品：每条按 pool 索引回填 audio（profile works 没有 audio 字段）
+const audioPool = DONAUDIO_DATA.audioPool || [];
+document.getElementById('workGrid').innerHTML = user.works.map((w, i) => {
+  const audioMeta = audioPool[(i + (w.seed||0)) % Math.max(1, audioPool.length)] || {};
+  const audioUrl = w.audio || audioMeta.url || '';
+  return `
+  <div class="tile" data-audio="${audioUrl}" data-title="${w.t}" data-author="${user.name}" data-cover="${w.seed}">
+    <div class="cover">${DONAUDIO_SVG.cover(w.seed, 600, 450)}</div>
+    <button class="add-btn" type="button" aria-label="添加到播放列表" title="添加到播放列表"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <button class="play-btn" type="button" aria-label="试听">${DONAUDIO_SVG.playIcon()}</button>
+    <div class="meta">
+      <div class="title">${w.t}</div>
+      <div class="stats">
+        <span>${DONAUDIO_SVG.icons.eye} ${w.stats[1].toLocaleString()}</span>
+        <span>${DONAUDIO_SVG.icons.heart} ${w.stats[0].toLocaleString()}</span>
+        <span>${DONAUDIO_SVG.icons.msg} ${w.stats[2]}</span>
+      </div>
+    </div>
+  </div>
+`; }).join('') || '<p style="color:var(--ink-mute);">暂无作品</p>';
+
+// 动态
+document.getElementById('profFeed').innerHTML = user.feed.map(p => `
+  <div class="post">
+    <div class="av"></div>
+    <div class="content">
+      <div class="head">
+        <div class="name">${user.name}</div>
+        <div class="role">${user.role}</div>
+        <div class="time">${p.time}</div>
+      </div>
+      <div class="body">${p.body}</div>
+      <div class="actions">
+        <span>${DONAUDIO_SVG.icons.heart} ${p.actions[0]}</span>
+        <span>${DONAUDIO_SVG.icons.msg} ${p.actions[1]}</span>
+        <span>转发 ${p.actions[2]}</span>
+      </div>
+    </div>
+  </div>
+`).join('') || '<p style="color:var(--ink-mute);">暂无动态</p>';
+
+// 关于
+document.getElementById('aboutBio').textContent = user.bio;
+document.getElementById('aboutSkills').innerHTML = user.skills.map(s => `<span class="skill">${s}</span>`).join('');
+
+// 侧栏：基本信息
+document.getElementById('sideInfo').innerHTML = user.info.map(row => `
+  <div class="info-row"><span class="k">${row.k}</span><span class="v">${row.v}</span></div>
+`).join('') + `<div class="info-row"><span class="k">加入时间</span><span class="v">${user.joined}</span></div>`;
+
+// 侧栏：技能
+document.getElementById('sideSkills').innerHTML = user.skills.map(s => `<span class="skill">${s}</span>`).join('')
+  || '<span style="color:var(--ink-mute); font-size:13px;">未填写</span>';
+
+// Tabs 切换
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-tab]');
+  if (!btn) return;
+  [...e.currentTarget.children].forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const tab = btn.dataset.tab;
+  document.getElementById('paneWorks').style.display = tab === 'works' ? '' : 'none';
+  document.getElementById('paneFeed').style.display = tab === 'feed' ? '' : 'none';
+  document.getElementById('paneAbout').style.display = tab === 'about' ? '' : 'none';
+});
+
+// 关注按钮
+document.getElementById('followBtn').addEventListener('click', (e) => {
+  e.currentTarget.classList.toggle('on');
+  e.currentTarget.textContent = e.currentTarget.classList.contains('on') ? '✓ 已关注' : '+ 关注';
+});
+
+// Hire 按钮
+document.getElementById('hireBtn').addEventListener('click', () => {
+  alert('已向 ' + user.name + ' 发起沟通邀约。请在站内信中继续对话。');
+});
+
+// 作品试听
+document.getElementById('workGrid').addEventListener('click', (e) => {
+  const btn = e.target.closest('.play-btn');
+  if (!btn) return;
+  const tile = btn.closest('.tile');
+  const url = tile?.dataset.audio;
+  if (!url || !window.DNPlayer) return;
+  e.preventDefault(); e.stopPropagation();
+  window.DNPlayer.playUrl(url, {
+    title: tile.dataset.title,
+    artist: tile.dataset.author,
+    cover: parseInt(tile.dataset.cover, 10),
+  });
+});
+</script>
+<script src="assets/player.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東方之音 DONAUDIO · 声音创作者的合作场域</title>
+<meta name="description" content="東方之音 DONAUDIO — 编曲、混音母带、作词作曲、声音设计、影视配乐五大板块，连接音乐人与需求方的交流平台。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700;900&family=Ma+Shan+Zheng&family=Liu+Jian+Mao+Cao&family=Zhi+Mang+Xing&family=Long+Cang&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<!-- ===== 启动页 ===== -->
+<div class="splash" id="splash">
+  <div class="splash-bg"></div>
+  <div class="splash-ring" style="width:240px;height:240px;"></div>
+  <div class="splash-ring" style="width:380px;height:380px;"></div>
+  <div class="splash-ring" style="width:520px;height:520px;"></div>
+  <div class="splash-content" id="splashEnter">
+    <img class="splash-char-img" src="assets/dong-ink.png" alt="東" draggable="false">
+    <div class="splash-hint">— 点击进入 —</div>
+  </div>
+</div>
+<div class="flux-bg"></div>
+<div class="flux-grid"></div>
+
+<!-- ===== 导航 ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span id="navLogo"></span>
+      東方之音
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">首页</a>
+      <a href="arranging.html">编曲</a>
+      <a href="mixing.html">混音母带</a>
+      <a href="songwriting.html">作词作曲</a>
+      <a href="sounddesign.html">声音设计</a>
+      <a href="scoring.html">影视配乐</a>
+      <a href="community.html">社区</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <span id="navSearchIcon"></span>
+        <input placeholder="搜索创作者 / 作品 / 话题">
+      </div>
+      <a href="brief.html" class="btn btn-ghost">发布需求</a>
+      <a href="auth.html" class="btn btn-primary">登录 / 注册</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag reveal"><span class="dot"></span>VERSION 1.0 · 4.23.2026 · WWW.DONAUDIO.COM</div>
+      <h1 class="reveal">
+        <span class="grad">東方之音</span><br>
+        声音创作者的<br>合作场域
+        <span class="en">DONAUDIO · WHERE SONIC CREATORS MEET</span>
+      </h1>
+      <p class="lead reveal">
+        一个纯粹的交流平台 — 编曲、混音母带、作词作曲、声音设计、影视配乐，<br>
+        让音乐人、声音设计师、需求方在此自由连接、展示、派活、合作。<br>
+        我们不抽佣、不插手合作，只做你们之间的桥。
+      </p>
+      <div class="hero-cta reveal">
+        <a href="auth.html" class="btn btn-primary">加入創作者 <span id="ctaArrow"></span></a>
+        <a href="brief.html" class="btn btn-outline">发布我的需求</a>
+        <a href="#sections" class="btn btn-ghost">浏览五大板块</a>
+      </div>
+      <div class="hero-stats reveal">
+        <div class="stat"><div class="num"><span data-count="12840">0</span></div><div class="lbl">创作者</div></div>
+        <div class="stat"><div class="num"><span data-count="38210">0</span></div><div class="lbl">作品</div></div>
+        <div class="stat"><div class="num"><span data-count="6720">0</span></div><div class="lbl">达成合作</div></div>
+        <div class="stat"><div class="num"><span data-count="24">0</span></div><div class="lbl">小时响应</div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal" id="heroVisual"></div>
+  </div>
+</section>
+
+<!-- ===== 品牌价值带 ===== -->
+<div class="value-bar reveal">
+  <div class="value-item">
+    <div class="ico"><span>零</span></div>
+    <div class="text">
+      <div class="t">不抽佣</div>
+      <div class="d">创作者的每一笔收入都归你，平台不碰钱、不过账。</div>
+    </div>
+  </div>
+  <div class="value-item">
+    <div class="ico"><span>纯</span></div>
+    <div class="text">
+      <div class="t">不插手</div>
+      <div class="d">合作条款、交付方式、后续修订，都由你们自己谈，我们只提供连接。</div>
+    </div>
+  </div>
+  <div class="value-item">
+    <div class="ico"><span>连</span></div>
+    <div class="text">
+      <div class="t">只做桥</div>
+      <div class="d">五大板块、一张作品集、一次站内信，让对的音乐人遇到对的需求方。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 五大板块 ===== -->
+<section class="sections" id="sections">
+  <div class="section-title reveal">
+    <div>
+      <div class="sub">FIVE SECTIONS</div>
+      <h2>五个 <span class="accent">声音</span> 的场域</h2>
+    </div>
+    <a href="community.html" class="btn btn-ghost">查看全部动态 →</a>
+  </div>
+  <div class="cards" id="sectionCards"></div>
+</section>
+
+<!-- ===== 今日资讯滚动 ===== -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ===== 精选作品瀑布流 ===== -->
+<section class="sections" style="padding-top:60px;">
+  <div class="section-title reveal">
+    <div>
+      <div class="sub">TRENDING NOW</div>
+      <h2>本周 <span class="accent">热门</span> 作品</h2>
+    </div>
+    <div class="toolbar" style="display:flex; gap:8px;">
+      <span class="chip on">全部</span>
+      <span class="chip">编曲</span>
+      <span class="chip">混音母带</span>
+      <span class="chip">声音设计</span>
+      <span class="chip">影视配乐</span>
+    </div>
+  </div>
+</section>
+<div class="masonry" id="homeMasonry"></div>
+
+<!-- ===== 社区动态 ===== -->
+<section class="community" id="community">
+  <div>
+    <div class="section-title reveal" style="margin-bottom:20px;">
+      <div>
+        <div class="sub">COMMUNITY</div>
+        <h2>同行 <span class="accent">在说</span></h2>
+      </div>
+      <a href="community.html" class="btn btn-ghost">进入社区 →</a>
+    </div>
+    <div class="feed" id="feed"></div>
+  </div>
+  <div class="side-panel">
+    <div class="panel reveal">
+      <h4>热门创作者</h4>
+      <div id="hotAuthors"></div>
+    </div>
+    <div class="panel reveal">
+      <h4>热门话题</h4>
+      <div id="hotTopics"></div>
+    </div>
+    <div class="panel reveal" style="background: linear-gradient(135deg, rgba(47,230,200,0.1), rgba(255,78,106,0.08)); border-color: rgba(47,230,200,0.25);">
+      <h4>加入東方之音</h4>
+      <p style="color:var(--ink-dim); font-size:13px; margin-bottom:14px;">一个不抽佣、不插手、只做连接的声音创作者社区。</p>
+      <a href="auth.html" class="btn btn-primary" style="width:100%; justify-content:center;">免费注册</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+        <span id="footLogo"></span>
+        東方之音
+      </a>
+      <p style="color:var(--ink-dim); font-size:13px; max-width:380px;">
+        DONAUDIO — 让东方的声音被世界听见。<br>
+        纯粹的声音创作者合作平台。
+      </p>
+    </div>
+    <div>
+      <h5>板块</h5>
+      <ul>
+        <li><a href="arranging.html">编曲</a></li>
+        <li><a href="mixing.html">混音母带</a></li>
+        <li><a href="songwriting.html">作词作曲</a></li>
+        <li><a href="sounddesign.html">声音设计</a></li>
+        <li><a href="scoring.html">影视配乐</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>平台</h5>
+      <ul>
+        <li><a href="community.html">社区</a></li>
+        <li><a href="brief.html">发布需求</a></li>
+        <li><a href="profile.html">个人主页</a></li>
+        <li>关于我们</li>
+        <li>合作洽谈</li>
+      </ul>
+    </div>
+    <div>
+      <h5>联系</h5>
+      <ul>
+        <li>contact@donaudio.com</li>
+        <li>微信公众号：東方之音</li>
+        <li>小红书：@DONAUDIO</li>
+        <li>Bilibili：東方之音官方</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 DONAUDIO · 東方之音 · 一个交流平台，仅此而已</span>
+    <span>WWW.DONAUDIO.COM</span>
+  </div>
+</footer>
+
+<script src="assets/svg.js"></script>
+<script src="assets/data.js"></script>
+<script>
+// 注入 LOGO / 图标
+document.getElementById('navLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('footLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('navSearchIcon').innerHTML = DONAUDIO_SVG.icons.search;
+document.getElementById('ctaArrow').innerHTML = DONAUDIO_SVG.icons.arrow;
+document.getElementById('heroVisual').innerHTML = `
+  <div style="position:relative; width:100%; height:100%; display:grid; place-items:center;">
+    <div style="position:absolute; width:70%; aspect-ratio:1; border-radius:50%;
+                background: radial-gradient(circle, rgba(0,255,135,0.25), transparent 65%);
+                filter: blur(40px); animation: blobFloat 10s ease-in-out infinite;"></div>
+    <img src="assets/dong-ink.png" alt="東" draggable="false"
+         style="position:relative; width:clamp(260px,45vw,480px); max-height:100%;
+                object-fit:contain;
+                filter: drop-shadow(0 0 40px rgba(0,255,135,0.35)) drop-shadow(0 0 90px rgba(123,47,190,0.25));
+                animation: splashCharPulseImg 4s ease-in-out infinite;">
+  </div>`;
+
+// 渲染板块卡片
+const cardsEl = document.getElementById('sectionCards');
+cardsEl.innerHTML = DONAUDIO_DATA.sections.map(s => `
+  <a href="${s.href}" class="card-section reveal">
+    <div class="blob"></div>
+    <div class="inner">
+      <div>
+        <div class="num">${s.num}</div>
+        <h3>${s.cn}</h3>
+        <div class="en-name">${s.en}</div>
+        <p class="desc">${s.desc}</p>
+      </div>
+      <div>
+        <div class="meta">${s.tags.slice(0,3).map(t => `<span>${t}</span>`).join('')}</div>
+        <div class="arrow" style="margin-top:14px;">${DONAUDIO_SVG.icons.arrow}</div>
+      </div>
+    </div>
+  </a>
+`).join('');
+
+// 滚动资讯（每条可点击进详情）
+const allNews = Object.entries(DONAUDIO_DATA.news).flatMap(([k, arr]) => arr.map(n => ({...n, sec: DONAUDIO_DATA.sections.find(x => x.id===k)?.cn || ''})));
+const tickerHTML = allNews.concat(allNews).map(n => `
+  <a class="ticker-item" href="news.html?id=${n.id}" style="color:inherit;"><span class="tag">${n.tag}</span>${n.sec ? `[${n.sec}] ` : ''}${n.text || n.title}</a>
+`).join('');
+document.getElementById('tickerTrack').innerHTML = tickerHTML;
+
+// 首页瀑布流：混合五板块精选
+const homeWorks = [].concat(
+  DONAUDIO_DATA.works.arranging.slice(0,3),
+  DONAUDIO_DATA.works.mixing.slice(0,3),
+  DONAUDIO_DATA.works.songwriting.slice(0,2),
+  DONAUDIO_DATA.works.sounddesign.slice(0,3),
+  DONAUDIO_DATA.works.scoring.slice(0,3)
+);
+document.getElementById('homeMasonry').innerHTML = homeWorks.map(w => `
+  <div class="tile h-${w.size}" data-audio="${w.audio || ''}" data-title="${w.t}" data-author="${w.a}" data-cover="${w.seed}">
+    <div class="cover">${DONAUDIO_SVG.cover(w.seed)}</div>
+    <button class="add-btn" type="button" aria-label="添加到播放列表" title="添加到播放列表"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    <button class="play-btn" type="button" aria-label="试听">${DONAUDIO_SVG.playIcon()}</button>
+    <div class="meta">
+      <div class="title">${w.t}</div>
+      <div class="author"><div class="avatar"></div>${w.a}</div>
+      <div class="stats">
+        <span>${DONAUDIO_SVG.icons.eye} ${w.stats[1].toLocaleString()}</span>
+        <span>${DONAUDIO_SVG.icons.heart} ${w.stats[0].toLocaleString()}</span>
+        <span>${DONAUDIO_SVG.icons.msg} ${w.stats[2]}</span>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+// 社区动态
+document.getElementById('feed').innerHTML = DONAUDIO_DATA.communityFeed.map(p => `
+  <a class="post reveal" href="profile.html?u=${encodeURIComponent(p.name)}" style="color:inherit;">
+    <div class="av"></div>
+    <div class="content">
+      <div class="head">
+        <div class="name">${p.name}</div>
+        <div class="role">${p.role}</div>
+        <div class="time">${p.time}</div>
+      </div>
+      <div class="body">${p.body}</div>
+      <div class="actions">
+        <span>${DONAUDIO_SVG.icons.heart} ${p.actions[0]}</span>
+        <span>${DONAUDIO_SVG.icons.msg} ${p.actions[1]}</span>
+        <span>转发 ${p.actions[2]}</span>
+      </div>
+    </div>
+  </a>
+`).join('');
+
+// 侧栏
+document.getElementById('hotAuthors').innerHTML = DONAUDIO_DATA.hotAuthors.map(a => `
+  <a class="item clickable" href="profile.html?u=${encodeURIComponent(a.name)}" style="color:inherit;"><span class="name">${a.name}</span><span class="meta">${a.meta}</span></a>
+`).join('');
+document.getElementById('hotTopics').innerHTML = DONAUDIO_DATA.hotTopics.map(t => `
+  <div class="item"><span class="name">${t.name}</span><span class="meta">${t.meta}</span></div>
+`).join('');
+
+// 作品 tile 的 ▶ 按钮：点击试听（不跳转）
+document.getElementById('homeMasonry').addEventListener('click', (e) => {
+  const btn = e.target.closest('.play-btn');
+  if (!btn) return;
+  const tile = btn.closest('.tile');
+  const url = tile?.dataset.audio;
+  if (!url || !window.DNPlayer) return;
+  e.preventDefault(); e.stopPropagation();
+  window.DNPlayer.playUrl(url, {
+    title: tile.dataset.title,
+    artist: tile.dataset.author,
+    cover: parseInt(tile.dataset.cover, 10),
+  });
+});
+</script>
+<script src="assets/player.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

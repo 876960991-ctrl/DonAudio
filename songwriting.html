@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">板块 · 東方之音 DONAUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700;900&family=Ma+Shan+Zheng&family=Liu+Jian+Mao+Cao&family=Zhi+Mang+Xing&family=Long+Cang&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="flux-bg"></div>
+<div class="flux-grid"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span id="navLogo"></span>
+      東方之音
+    </a>
+    <div class="nav-links" id="navLinks"></div>
+    <div class="nav-right">
+      <div class="nav-search">
+        <span id="navSearchIcon"></span>
+        <input placeholder="搜索创作者 / 作品 / 话题">
+      </div>
+      <a href="brief.html" class="btn btn-ghost">发布需求</a>
+      <a href="auth.html" class="btn btn-primary">登录 / 注册</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== 板块 Hero ===== -->
+<section class="page-hero">
+  <div class="crumb"><a href="index.html">首页</a> / <span id="crumbSec">板块</span></div>
+  <h1 id="secTitle"><span class="grad" id="secCn">板块</span> <span style="color:var(--ink-mute); font-size:0.55em; letter-spacing:6px;" id="secEn">SECTION</span></h1>
+  <p class="desc" id="secDesc"></p>
+  <div class="toolbar" id="mainToolbar">
+    <span class="chip on" data-filter="all">全部</span>
+    <span class="chip" data-filter="latest">最新</span>
+    <span class="chip" data-filter="hot">最热</span>
+    <span class="chip" data-filter="hiring">招募中</span>
+    <span class="chip" data-filter="paid">付费作品</span>
+    <span id="secTags"></span>
+    <a href="brief.html" class="btn btn-outline" style="margin-left:auto;">在这个板块发布需求</a>
+  </div>
+  <div id="filterStatus" style="margin-top:16px; color:var(--ink-mute); font-size:13px;"></div>
+</section>
+
+<!-- ===== 今日资讯滚动（可点击） ===== -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ===== 作品瀑布流（第一眼就是作品流） ===== -->
+<section class="sections" style="padding-top:40px;">
+  <div class="section-title">
+    <div>
+      <div class="sub">WORKS</div>
+      <h2>板块 <span class="accent">作品流</span></h2>
+    </div>
+    <div style="color:var(--ink-mute); font-size:13px;">滑动浏览 · 支持试听 · 点击进入个人主页</div>
+  </div>
+</section>
+<div class="masonry" id="worksMasonry"></div>
+
+<!-- ===== 今日资讯栏（卡片）+ 热门创作者 ===== -->
+<section class="community" id="newsSection" style="padding-top:40px;">
+  <div>
+    <div class="section-title" style="margin-bottom:20px;">
+      <div>
+        <div class="sub">TODAY</div>
+        <h2>今日 <span class="accent">资讯</span></h2>
+      </div>
+    </div>
+    <div class="feed" id="newsFeed"></div>
+  </div>
+  <div class="side-panel">
+    <div class="panel">
+      <h4>板块热门创作者</h4>
+      <div id="sectionAuthors"></div>
+    </div>
+    <div class="panel">
+      <h4>相关话题</h4>
+      <div id="sectionTopics"></div>
+    </div>
+    <div class="panel" style="background: linear-gradient(135deg, rgba(0,255,135,0.1), rgba(123,47,190,0.08)); border-color: rgba(0,255,135,0.25);">
+      <h4>我是这个领域的创作者</h4>
+      <p style="color:var(--ink-dim); font-size:13px; margin-bottom:14px;">注册后即可上传作品、展示个人主页，主动被需求方发现。</p>
+      <a href="auth.html" class="btn btn-primary" style="width:100%; justify-content:center;">加入創作者</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+        <span id="footLogo"></span>
+        東方之音
+      </a>
+      <p style="color:var(--ink-dim); font-size:13px;">DONAUDIO — 让东方的声音被世界听见。</p>
+    </div>
+    <div><h5>板块</h5><ul>
+      <li><a href="arranging.html">编曲</a></li><li><a href="mixing.html">混音母带</a></li>
+      <li><a href="songwriting.html">作词作曲</a></li><li><a href="sounddesign.html">声音设计</a></li>
+      <li><a href="scoring.html">影视配乐</a></li>
+    </ul></div>
+    <div><h5>平台</h5><ul>
+      <li><a href="community.html">社区</a></li><li><a href="brief.html">发布需求</a></li>
+      <li><a href="profile.html">个人主页</a></li><li>关于我们</li>
+    </ul></div>
+    <div><h5>联系</h5><ul>
+      <li>contact@donaudio.com</li><li>微信：東方之音</li><li>小红书：@DONAUDIO</li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 DONAUDIO · 東方之音</span><span>WWW.DONAUDIO.COM</span></div>
+</footer>
+
+<script src="assets/svg.js"></script>
+<script src="assets/data.js"></script>
+<script>
+// 当前板块 id
+const fileName = location.pathname.split('/').pop().replace('.html','');
+const SEC_ID = fileName || 'arranging';
+const section = DONAUDIO_DATA.sections.find(s => s.id === SEC_ID) || DONAUDIO_DATA.sections[0];
+
+// 标题
+document.title = `${section.cn} · 東方之音 DONAUDIO`;
+document.getElementById('pageTitle').textContent = document.title;
+document.getElementById('crumbSec').textContent = section.cn;
+document.getElementById('secCn').textContent = section.cn;
+document.getElementById('secEn').textContent = section.en;
+document.getElementById('secDesc').textContent = section.desc;
+document.getElementById('secTags').innerHTML = section.tags.map(t => `<span class="chip" data-filter="tag:${t}">${t}</span>`).join('');
+
+// LOGO & 图标
+document.getElementById('navLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('footLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('navSearchIcon').innerHTML = DONAUDIO_SVG.icons.search;
+
+// 导航高亮
+document.getElementById('navLinks').innerHTML = `
+  <a href="index.html">首页</a>
+  ${DONAUDIO_DATA.sections.map(s => `<a href="${s.href}" class="${s.id===SEC_ID?'active':''}">${s.cn}</a>`).join('')}
+  <a href="community.html">社区</a>
+`;
+
+// 资讯 ticker（可点击）
+const secNews = DONAUDIO_DATA.news[SEC_ID] || [];
+document.getElementById('tickerTrack').innerHTML = secNews.concat(secNews).concat(secNews).map(n => `
+  <a class="ticker-item" href="news.html?id=${n.id}" style="color:inherit;"><span class="tag">${n.tag}</span>${n.text || n.title}</a>
+`).join('');
+
+// 资讯卡片
+document.getElementById('newsFeed').innerHTML = secNews.map(n => `
+  <a class="post" href="news.html?id=${n.id}" style="color:inherit; text-decoration:none;">
+    <div class="av" style="background: linear-gradient(135deg, #00FF87 0%, #7B2FBE 55%, #FF0080 100%); background-size:250% 250%; animation: gradMove 6s ease infinite;"></div>
+    <div class="content">
+      <div class="head">
+        <div class="name">${n.source}</div>
+        <div class="role">${n.tag}</div>
+        <div class="time">${n.date}</div>
+      </div>
+      <div class="body" style="font-weight:600; color:var(--ink); margin-bottom:4px;">${n.title}</div>
+      <div style="color:var(--ink-dim); font-size:13px; line-height:1.6;">${n.text || ''}</div>
+      <div class="actions">
+        <span>${DONAUDIO_SVG.icons.heart} 收藏</span>
+        <span>${DONAUDIO_SVG.icons.msg} 评论</span>
+        <span>阅读全文 →</span>
+      </div>
+    </div>
+  </a>
+`).join('');
+
+// 热门创作者 & 话题
+document.getElementById('sectionAuthors').innerHTML = DONAUDIO_DATA.hotAuthors.map(a => `
+  <a class="item clickable" href="profile.html?u=${encodeURIComponent(a.name)}" style="color:inherit;"><span class="name">${a.name}</span><span class="meta">${a.meta}</span></a>
+`).join('');
+document.getElementById('sectionTopics').innerHTML = [
+  {name:`#${section.cn}每日`, meta:'讨论中'},
+  {name:`#${section.cn}招募`, meta:'招募中'},
+  {name:`#${section.cn}幕后`, meta:'热门'},
+  {name:`#${section.cn}工具`, meta:'分享'},
+  {name:`#${section.cn}新人`, meta:'推荐'},
+].map(t => `<div class="item"><span class="name">${t.name}</span><span class="meta">${t.meta}</span></div>`).join('');
+
+/* ============== 作品筛选逻辑 ============== */
+const worksAll = (DONAUDIO_DATA.works[SEC_ID] || []).concat(
+  (DONAUDIO_DATA.works[SEC_ID] || []).map(w => ({...w, t: w.t + ' · II', seed: (w.seed*2)%6}))
+);
+// 给每条作品附加一个伪属性用于筛选
+worksAll.forEach((w, i) => {
+  // 用 seed + stats 衍生一组属性：发布时间天数、热度、是否招募、是否付费、标签
+  w._views = w.stats[1];
+  w._likes = w.stats[0];
+  w._daysAgo = (i * 3 + w.seed * 2) % 60;  // 0-60 天
+  w._hiring = (w.seed % 3 === 0);
+  w._paid   = (w.seed % 2 === 0);
+  w._tags   = section.tags.filter((_, j) => ((i + j + w.seed) % section.tags.length) < 2);
+});
+
+function renderWorks(filter) {
+  let list = worksAll.slice();
+  let statusText = '';
+
+  if (filter === 'all' || !filter) {
+    statusText = `全部 ${list.length} 件作品`;
+  } else if (filter === 'latest') {
+    list.sort((a, b) => a._daysAgo - b._daysAgo);
+    statusText = `按发布时间排序 · ${list.length} 件`;
+  } else if (filter === 'hot') {
+    list.sort((a, b) => b._views - a._views);
+    statusText = `按热度排序 · ${list.length} 件`;
+  } else if (filter === 'hiring') {
+    list = list.filter(w => w._hiring);
+    statusText = `招募中的项目 · ${list.length} 件`;
+  } else if (filter === 'paid') {
+    list = list.filter(w => w._paid);
+    statusText = `付费合作类作品 · ${list.length} 件`;
+  } else if (filter && filter.startsWith('tag:')) {
+    const tag = filter.slice(4);
+    list = list.filter(w => w._tags.includes(tag));
+    statusText = `标签「${tag}」· ${list.length} 件`;
+  }
+
+  document.getElementById('filterStatus').textContent = statusText;
+
+  if (list.length === 0) {
+    document.getElementById('worksMasonry').innerHTML = `
+      <div style="grid-column: 1/-1; text-align:center; padding:60px 20px; color:var(--ink-mute);">
+        暂无符合条件的作品
+      </div>`;
+    return;
+  }
+  document.getElementById('worksMasonry').innerHTML = list.map(w => {
+    const badges = [
+      w._hiring ? '<span style="padding:2px 8px; border-radius:999px; background:rgba(0,255,135,0.15); color:#00FF87; font-size:10px; letter-spacing:1px;">招募中</span>' : '',
+      w._paid   ? '<span style="padding:2px 8px; border-radius:999px; background:rgba(255,0,128,0.15); color:#FF4E94; font-size:10px; letter-spacing:1px;">付费</span>' : '',
+    ].filter(Boolean).join(' ');
+    return `
+    <a href="profile.html?u=${encodeURIComponent(w.a)}" class="tile h-${w.size}" style="text-decoration:none;"
+       data-audio="${w.audio || ''}" data-title="${w.t}" data-author="${w.a}" data-cover="${w.seed}">
+      <div class="cover">${DONAUDIO_SVG.cover(w.seed)}</div>
+      <button class="add-btn" type="button" aria-label="添加到播放列表" title="添加到播放列表"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+      <button class="play-btn" type="button" aria-label="试听">${DONAUDIO_SVG.playIcon()}</button>
+      <div class="meta">
+        <div class="title">${w.t}</div>
+        <div class="author"><div class="avatar"></div>${w.a}</div>
+        ${badges ? `<div style="margin-top:8px; display:flex; gap:6px;">${badges}</div>` : ''}
+        <div class="stats">
+          <span>${DONAUDIO_SVG.icons.eye} ${w._views.toLocaleString()}</span>
+          <span>${DONAUDIO_SVG.icons.heart} ${w._likes.toLocaleString()}</span>
+          <span>${DONAUDIO_SVG.icons.msg} ${w.stats[2]}</span>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+/* ============== chip 点击 ============== */
+document.getElementById('mainToolbar').addEventListener('click', (e) => {
+  const chip = e.target.closest('.chip[data-filter]');
+  if (!chip) return;
+  const bar = e.currentTarget;
+  [...bar.querySelectorAll('.chip')].forEach(c => c.classList.remove('on'));
+  chip.classList.add('on');
+  const filter = chip.dataset.filter;
+  renderWorks(filter);
+  // 滚动到作品流
+  document.querySelector('.masonry').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// 初始渲染
+renderWorks('all');
+
+// 作品 tile 的 ▶ 按钮：拦截跳转，改为试听
+document.getElementById('worksMasonry').addEventListener('click', (e) => {
+  const btn = e.target.closest('.play-btn');
+  if (!btn) return;
+  const tile = btn.closest('.tile');
+  const url = tile?.dataset.audio;
+  if (!url || !window.DNPlayer) return;
+  e.preventDefault(); e.stopPropagation();
+  window.DNPlayer.playUrl(url, {
+    title: tile.dataset.title,
+    artist: tile.dataset.author,
+    cover: parseInt(tile.dataset.cover, 10),
+  });
+});
+
+/* ============== 字体加载完成再显示 hero 标题，彻底避免抖动 ============== */
+const titleEl = document.getElementById('secTitle');
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => titleEl.classList.add('fonts-ready'));
+  // 保底：1.2 秒后强制显示（网络慢时不至于一直空白）
+  setTimeout(() => titleEl.classList.add('fonts-ready'), 1200);
+} else {
+  titleEl.classList.add('fonts-ready');
+}
+</script>
+<script src="assets/player.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

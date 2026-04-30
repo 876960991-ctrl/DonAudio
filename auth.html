@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加入 · 東方之音 DONAUDIO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="flux-bg"></div>
+<div class="flux-grid"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span id="navLogo"></span>
+      東方之音
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="arranging.html">编曲</a>
+      <a href="mixing.html">混音母带</a>
+      <a href="songwriting.html">作词作曲</a>
+      <a href="sounddesign.html">声音设计</a>
+      <a href="scoring.html">影视配乐</a>
+      <a href="community.html">社区</a>
+    </div>
+    <div class="nav-right">
+      <a href="brief.html" class="btn btn-ghost">发布需求</a>
+    </div>
+  </div>
+</nav>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h2>欢迎回到 <span style="background: var(--grad-hero); -webkit-background-clip:text; background-clip:text; color:transparent;">東方之音</span></h2>
+    <div class="sub">不抽佣、不插手 — 只做连接的声音创作者社区</div>
+
+    <div class="tab-switch">
+      <button class="on" id="tabLogin">登录</button>
+      <button id="tabReg">注册</button>
+    </div>
+
+    <!-- 注册时显示 -->
+    <div id="regOnly" style="display:none;">
+      <div style="font-size:12px; color:var(--ink-dim); margin-bottom:8px; letter-spacing:1px;">我是 · I AM</div>
+      <div class="role-pick">
+        <div class="opt on">
+          <div class="t">創作者</div>
+          <div class="d">编曲 / 混音 / 作词作曲 / 声音设计 / 配乐</div>
+        </div>
+        <div class="opt">
+          <div class="t">需求方</div>
+          <div class="d">音乐人 / 厂牌 / 影视游戏 / 品牌 / 独立团队</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>邮箱 / 手机号</label>
+      <input type="text" placeholder="you@donaudio.com">
+    </div>
+    <div class="field">
+      <label>密码</label>
+      <input type="password" placeholder="至少 8 位">
+    </div>
+    <div id="regFields" style="display:none;">
+      <div class="field">
+        <label>昵称 / 艺名</label>
+        <input type="text" placeholder="例如 顾岸 / MixLab·源">
+      </div>
+      <div class="field">
+        <label>主攻方向（可多选）</label>
+        <input type="text" placeholder="编曲 · 影视配乐">
+      </div>
+    </div>
+
+    <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:8px;">
+      <span id="submitLabel">登录</span>
+    </button>
+
+    <div style="display:flex; align-items:center; gap:10px; margin:20px 0; color:var(--ink-mute); font-size:12px;">
+      <div style="flex:1; height:1px; background:var(--line);"></div>
+      或使用第三方登录
+      <div style="flex:1; height:1px; background:var(--line);"></div>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+      <button class="btn btn-ghost" style="justify-content:center;">微信</button>
+      <button class="btn btn-ghost" style="justify-content:center;">QQ</button>
+      <button class="btn btn-ghost" style="justify-content:center;">Apple</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/svg.js"></script>
+<script>
+document.getElementById('navLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+const regOnly = document.getElementById('regOnly');
+const regFields = document.getElementById('regFields');
+const lbl = document.getElementById('submitLabel');
+document.getElementById('tabLogin').addEventListener('click', () => {
+  regOnly.style.display = 'none'; regFields.style.display='none'; lbl.textContent = '登录';
+});
+document.getElementById('tabReg').addEventListener('click', () => {
+  regOnly.style.display = 'block'; regFields.style.display='block'; lbl.textContent = '创建我的账号';
+});
+</script>
+<script src="assets/player.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
