@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>上传作品 · 東方之音 DONAUDIO</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=202605061719">
+<script src="assets/embed.js?v=202605061719"></script>
+<style>
+  .up-wrap { max-width: 720px; margin: 0 auto; padding: 60px 32px 100px; }
+  .up-hero h1 {
+    font-family: var(--font-serif); font-size: clamp(32px, 4vw, 48px);
+    letter-spacing: 2px; margin-bottom: 10px;
+    background: linear-gradient(135deg, #00FF87 0%, #7B2FBE 55%, #FF0080 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .up-hero .sub { color: var(--ink-dim); font-size: 15px; margin-bottom: 28px; }
+
+  .up-card {
+    padding: 28px; border-radius: var(--r-lg);
+    background: var(--bg-2); border: 1px solid var(--line);
+  }
+  .up-card .field { margin-bottom: 18px; }
+  .up-card label {
+    display: block; font-size: 13px; color: var(--ink-dim);
+    margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .up-card label .req { color: #FF4E94; }
+  .up-card input[type=text], .up-card select, .up-card textarea {
+    width: 100%; padding: 11px 14px; border-radius: 10px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+    color: var(--ink); font-size: 14px; font-family: inherit;
+    outline: none; transition: border-color .2s;
+  }
+  .up-card input:focus, .up-card select:focus, .up-card textarea:focus { border-color: #00FF87; }
+  .up-card textarea { min-height: 100px; resize: vertical; }
+
+  .drop {
+    padding: 28px; border: 2px dashed var(--line-strong);
+    border-radius: var(--r-md); text-align: center;
+    color: var(--ink-mute); cursor: pointer; transition: all .25s;
+    position: relative; overflow: hidden;
+  }
+  .drop:hover { border-color: #00FF87; color: var(--ink); background: rgba(0,255,135,0.04); }
+  .drop input[type=file] {
+    position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  }
+  .drop.filled { border-style: solid; color: #00FF87; border-color: rgba(0,255,135,0.45); }
+  .preview-cover {
+    height: 180px; margin-top: 10px; border-radius: 10px;
+    background-size: cover; background-position: center;
+  }
+  .preview-audio {
+    margin-top: 10px; padding: 10px 14px; border-radius: 10px;
+    background: rgba(0,255,135,0.08); color: #7FF0DC; font-size: 13px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .not-login {
+    padding: 40px; text-align: center;
+    background: var(--bg-2); border-radius: var(--r-lg);
+    border: 1px solid var(--line);
+  }
+  .not-login .emoji { font-size: 48px; margin-bottom: 12px; }
+  .not-login p { color: var(--ink-dim); margin-bottom: 18px; }
+
+  .success-box {
+    display: none; padding: 40px; text-align: center;
+    border-radius: var(--r-lg);
+    background: linear-gradient(135deg, rgba(0,255,135,0.1), rgba(123,47,190,0.08));
+    border: 1px solid rgba(0,255,135,0.3);
+  }
+  .success-box .emoji { font-size: 56px; margin-bottom: 12px; }
+
+  .up-actions {
+    display: flex; gap: 10px; margin-top: 24px;
+    padding-top: 18px; border-top: 1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+<div class="flux-bg"></div>
+<div class="flux-grid"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span id="navLogo"></span>
+      東方之音
+    </a>
+    <div class="nav-links">
+      <a href="home.html">首页</a>
+      <a href="arranging.html">编曲</a>
+      <a href="mixing.html">混音母带</a>
+      <a href="songwriting.html">作词作曲</a>
+      <a href="sounddesign.html">声音设计</a>
+      <a href="scoring.html">影视配乐</a>
+      <a href="community.html">社区</a>
+    </div>
+    <div class="nav-right">
+      <a href="brief.html" class="btn btn-ghost">发布需求</a>
+      <a href="auth.html" class="btn btn-primary">登录 / 注册</a>
+    </div>
+  </div>
+</nav>
+
+<section class="up-wrap">
+  <div class="up-hero">
+    <h1>＋ 上传新作品</h1>
+    <div class="sub">作品保存在你的浏览器里，其他浏览到你主页的人可以看到。</div>
+  </div>
+
+  <!-- 未登录 -->
+  <div class="not-login" id="notLoginBox" style="display:none;">
+    <div class="emoji">🔒</div>
+    <p>请先登录再上传作品。</p>
+    <a href="auth.html" class="btn btn-primary">去登录 / 注册</a>
+  </div>
+
+  <!-- 表单 -->
+  <div class="up-card" id="upForm" style="display:none;">
+    <div class="field">
+      <label>作品标题 <span class="req">*</span></label>
+      <input id="u-title" type="text" placeholder="例：长夜流光 · 弦乐编配">
+    </div>
+    <div class="field">
+      <label>所属板块 <span class="req">*</span></label>
+      <select id="u-sec">
+        <option value="arranging">编曲</option>
+        <option value="mixing">混音母带</option>
+        <option value="songwriting">作词作曲</option>
+        <option value="sounddesign">声音设计</option>
+        <option value="scoring">影视配乐</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>作品描述</label>
+      <textarea id="u-desc" placeholder="这件作品的背景、风格、想表达的东西..."></textarea>
+    </div>
+    <div class="field">
+      <label>标签（逗号分隔）</label>
+      <input id="u-tags" type="text" placeholder="例：流行, 国风, 弦乐">
+    </div>
+    <div class="field">
+      <label>封面图（可选）</label>
+      <div class="drop" id="coverDrop">
+        <input type="file" accept="image/*" id="u-cover">
+        <div>📎 点击或拖拽图片到此上传</div>
+        <div style="font-size:12px; margin-top:4px; color:var(--ink-mute);">建议 4:3，≤ 2MB</div>
+      </div>
+      <div class="preview-cover" id="coverPreview" style="display:none;"></div>
+    </div>
+    <div class="field">
+      <label>试听音频（可选，MP3/WAV）</label>
+      <div class="drop" id="audioDrop">
+        <input type="file" accept="audio/*" id="u-audio">
+        <div>🎵 点击或拖拽音频文件到此上传</div>
+        <div style="font-size:12px; margin-top:4px; color:var(--ink-mute);">≤ 8MB，将保存在你的浏览器本地</div>
+      </div>
+      <div class="preview-audio" id="audioPreview" style="display:none;">
+        <span>🎵</span><span id="audioName">—</span>
+      </div>
+    </div>
+    <div id="errBox" style="display:none; padding:10px 14px; border-radius:8px; background:rgba(255,78,148,0.15); color:#FF4E94; font-size:13px;"></div>
+    <div class="up-actions">
+      <button class="btn btn-ghost" id="cancelBtn">取消</button>
+      <button class="btn btn-primary" id="publishBtn" style="margin-left:auto;">📣 发布作品</button>
+    </div>
+  </div>
+
+  <!-- 成功 -->
+  <div class="success-box" id="successBox">
+    <div class="emoji">🎉</div>
+    <h2 style="font-family:var(--font-serif); font-size:26px; letter-spacing:2px; margin-bottom:6px;">作品已发布</h2>
+    <p style="color:var(--ink-dim); margin-bottom:20px;">已经出现在你的主页和对应板块的作品流里。</p>
+    <a href="#" id="goProfile" class="btn btn-primary">查看我的主页 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="home.html" class="nav-logo" style="margin-bottom:16px;"><span id="footLogo"></span>東方之音</a>
+      <p style="color:var(--ink-dim); font-size:13px;">DONAUDIO — 让东方的声音被世界听见。</p>
+    </div>
+    <div><h5>板块</h5><ul>
+      <li><a href="arranging.html">编曲</a></li><li><a href="mixing.html">混音母带</a></li>
+      <li><a href="songwriting.html">作词作曲</a></li><li><a href="sounddesign.html">声音设计</a></li>
+      <li><a href="scoring.html">影视配乐</a></li>
+    </ul></div>
+    <div><h5>平台</h5><ul>
+      <li><a href="community.html">社区</a></li><li><a href="brief.html">发布需求</a></li>
+    </ul></div>
+    <div><h5>联系</h5><ul>
+      <li>contact@donaudio.com</li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 DONAUDIO · 東方之音</span></div>
+</footer>
+
+<script src="assets/svg.js?v=202605061719"></script>
+<script src="assets/data.js?v=202605061719"></script>
+<script src="assets/auth.js?v=202605061719"></script>
+<script>
+document.getElementById('navLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+document.getElementById('footLogo').innerHTML = DONAUDIO_SVG.logoMark(30);
+
+const cur = DNAuth.current();
+if (!cur) {
+  document.getElementById('notLoginBox').style.display = '';
+} else {
+  document.getElementById('upForm').style.display = '';
+}
+
+let coverData = null;
+let audioData = null;
+
+// 封面图上传
+document.getElementById('u-cover').addEventListener('change', (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  if (f.size > 2 * 1024 * 1024) { alert('封面图最大 2MB'); return; }
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      // 压缩到宽 1000
+      const maxW = 1000;
+      const ratio = Math.min(1, maxW / img.width);
+      const c = document.createElement('canvas');
+      c.width = img.width * ratio; c.height = img.height * ratio;
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      coverData = c.toDataURL('image/jpeg', 0.82);
+      const prev = document.getElementById('coverPreview');
+      prev.style.background = `url('${coverData}') center/cover no-repeat`;
+      prev.style.display = '';
+      document.getElementById('coverDrop').classList.add('filled');
+      document.getElementById('coverDrop').querySelector('div').textContent = '✅ 封面已上传（点此更换）';
+    };
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(f);
+});
+
+// 音频上传
+document.getElementById('u-audio').addEventListener('change', (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  if (f.size > 8 * 1024 * 1024) { alert('音频最大 8MB'); return; }
+  const reader = new FileReader();
+  reader.onload = () => {
+    audioData = reader.result;
+    document.getElementById('audioName').textContent = f.name + ' (' + Math.round(f.size/1024) + ' KB)';
+    document.getElementById('audioPreview').style.display = '';
+    document.getElementById('audioDrop').classList.add('filled');
+    document.getElementById('audioDrop').querySelector('div').textContent = '✅ 音频已选择（点此更换）';
+  };
+  reader.readAsDataURL(f);
+});
+
+document.getElementById('cancelBtn').addEventListener('click', () => {
+  const target = `profile.html?u=${encodeURIComponent(cur.name)}`;
+  try { window.top.postMessage({ type:'dn:navigate', url: target }, '*'); }
+  catch(e) { location.href = target; }
+});
+
+document.getElementById('publishBtn').addEventListener('click', () => {
+  const err = document.getElementById('errBox');
+  err.style.display = 'none';
+  const title = document.getElementById('u-title').value.trim();
+  const sec   = document.getElementById('u-sec').value;
+  const desc  = document.getElementById('u-desc').value.trim();
+  const tags  = document.getElementById('u-tags').value.split(',').map(s=>s.trim()).filter(Boolean);
+  if (!title) { err.textContent = '✖ 请填写作品标题'; err.style.display='block'; return; }
+
+  const r = DNAuth.addWork({
+    t: title,
+    desc,
+    tags,
+    cover: coverData || '',
+    audio: audioData || '',
+    size: 'md',
+    seed: Math.floor(Math.random()*8),
+  });
+  if (!r.ok) { err.textContent = '✖ ' + r.msg; err.style.display='block'; return; }
+
+  // 同步追加到全局作品流（这样别的访客浏览该板块时也能看到——仅在本浏览器可见）
+  if (window.DONAUDIO_DATA.works[sec]) {
+    window.DONAUDIO_DATA.works[sec].unshift({
+      t: title, a: cur.name, size: 'md', stats: [0, 0, 0],
+      seed: Math.floor(Math.random()*8),
+      audio: audioData || '', cover: coverData || '',
+      _fromUser: true,
+    });
+  }
+
+  document.getElementById('upForm').style.display = 'none';
+  document.getElementById('successBox').style.display = '';
+  document.getElementById('goProfile').href = `profile.html?u=${encodeURIComponent(cur.name)}`;
+});
+</script>
+<script src="assets/player.js?v=202605061719"></script>
+<script src="assets/app.js?v=202605061719"></script>
+</body>
+</html>
